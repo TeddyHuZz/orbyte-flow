@@ -41,10 +41,10 @@
   - `AuditLogEntry`: `{ id, timestamp, user, action, details, status }`
   - `orbyteDb`: singleton in-memory database with methods `getProducts()`, `getProductBySku(sku)`, `updateStock(sku, delta)`, `getCustomers()`, `findCustomer(query)`, `addAuditLog(entry)`, `getAuditLogs()`
 
-- [ ] **Step 1: Create domain types** in `src/types/index.ts` and `src/lib/orbyte/types.ts`.
-- [ ] **Step 2: Create realistic Malaysian SME seed data** in `src/lib/orbyte/seed-data.ts` (Milo 1kg, Susu Pekat F&N, Beras Jasmine Super 10kg, Minyak Masak Seri Murni 5kg, Telur Gred A, Nescafe Classic 200g, customers with valid/missing LHDN TINs).
-- [ ] **Step 3: Implement in-memory Orbyte store** in `src/lib/orbyte/db.ts`.
-- [ ] **Step 4: Verify Orbyte store operations** via quick node verification script.
+- [x] **Step 1: Create domain types** in `src/types/index.ts` and `src/lib/orbyte/types.ts`.
+- [x] **Step 2: Create realistic Malaysian SME seed data** in `src/lib/orbyte/seed-data.ts` (Milo 1kg, Susu Pekat F&N, Beras Jasmine Super 10kg, Minyak Masak Seri Murni 5kg, Telur Gred A, Nescafe Classic 200g, customers with valid/missing LHDN TINs).
+- [x] **Step 3: Implement in-memory Orbyte store** in `src/lib/orbyte/db.ts`.
+- [x] **Step 4: Verify Orbyte store operations** via quick node verification script.
 
 ---
 
@@ -60,11 +60,11 @@
 - Produces: `extractOrderFromText(rawText: string): Promise<ExtractionResult>`
   - `ExtractionResult`: `{ success: boolean, providerUsed: 'deepseek' | 'gemini' | 'mock', customerName?: string, notes?: string, items: Array<{ rawName: string, quantity: number, unit: string }> }`
 
-- [ ] **Step 1: Implement `mock-parser.ts`** using regex rules tailored for Malaysian SME chat patterns (e.g. "15 carton Milo", "5 tin susu pekat", "deliver by Friday to PJ site").
-- [ ] **Step 2: Implement `deepseek.ts`** calling `https://api.deepseek.com` with JSON schema output.
-- [ ] **Step 3: Implement `gemini.ts`** calling Gemini API with structured JSON output.
-- [ ] **Step 4: Implement `client.ts`** orchestrating fallback: DeepSeek $\rightarrow$ Gemini $\rightarrow$ Mock Parser.
-- [ ] **Step 5: Verify extraction** with test strings (Manglish, English, Malay).
+- [x] **Step 1: Implement `mock-parser.ts`** using regex rules tailored for Malaysian SME chat patterns (e.g. "15 carton Milo", "5 tin susu pekat", "deliver by Friday to PJ site").
+- [x] **Step 2: Implement `deepseek.ts`** calling `https://api.deepseek.com` with JSON schema output.
+- [x] **Step 3: Implement `gemini.ts`** calling Gemini API with structured JSON output.
+- [x] **Step 4: Implement `client.ts`** orchestrating fallback: DeepSeek $\rightarrow$ Gemini $\rightarrow$ Mock Parser.
+- [x] **Step 5: Verify extraction** with test strings (Manglish, English, Malay).
 
 ---
 
@@ -83,10 +83,10 @@
     - `MISSING_TIN`: e.g. "Customer TIN missing — non-compliant for LHDN e-Invoicing".
     - `UNMATCHED_SKU`: e.g. "Unrecognized item — manual match required".
 
-- [ ] **Step 1: Implement SKU matcher** (fuzzy matching on product names/aliases).
-- [ ] **Step 2: Implement stock, pricing, and tax calculation logic**.
-- [ ] **Step 3: Implement LHDN compliance check** (TIN format check / missing check).
-- [ ] **Step 4: Verify validator** with test cases.
+- [x] **Step 1: Implement SKU matcher** (fuzzy matching on product names/aliases).
+- [x] **Step 2: Implement stock, pricing, and tax calculation logic**.
+- [x] **Step 3: Implement LHDN compliance check** (TIN format check / missing check).
+- [x] **Step 4: Verify validator** with test cases.
 
 ---
 
@@ -105,10 +105,10 @@
 - `/api/catalog`: Returns all SKUs and current stock levels.
 - `/api/audit-log`: Returns list of all audit trail entries.
 
-- [ ] **Step 1: Implement `/api/extract` & `/api/validate` routes**.
-- [ ] **Step 2: Implement `/api/approve` route** with stock decrement & clipboard confirmation generator.
-- [ ] **Step 3: Implement `/api/catalog` & `/api/audit-log` routes**.
-- [ ] **Step 4: Test API endpoints** with `curl` or fetch script.
+- [x] **Step 1: Implement `/api/extract` & `/api/validate` routes**.
+- [x] **Step 2: Implement `/api/approve` route** with stock decrement & clipboard confirmation generator.
+- [x] **Step 3: Implement `/api/catalog` & `/api/audit-log` routes**.
+- [x] **Step 4: Test API endpoints** with `curl` or fetch script.
 
 ---
 
@@ -127,10 +127,10 @@
   - Document type selector: `Quotation` / `Purchase Order` / `e-Invoice Draft`.
   - Keyboard shortcut hints (`Esc` to dismiss, `Enter` to approve).
 
-- [ ] **Step 1: Build the modal HUD container** with smooth backdrop and floating card positioning.
-- [ ] **Step 2: Build the editable line items table** with unit price calculations and stock badges.
-- [ ] **Step 3: Build warning alert banners** for compliance and stock shortfalls.
-- [ ] **Step 4: Wire Approve, Edit, and Reject actions**.
+- [x] **Step 1: Build the modal HUD container** with smooth backdrop and floating card positioning.
+- [x] **Step 2: Build the editable line items table** with unit price calculations and stock badges.
+- [x] **Step 3: Build warning alert banners** for compliance and stock shortfalls.
+- [x] **Step 4: Wire Approve, Edit, and Reject actions**.
 
 ---
 
@@ -152,10 +152,10 @@
   - Text selection trigger: Highlighting text surfaces a floating badge: **"Extract with Orbyte (Alt + O)"**.
   - Quick action buttons: "Try Sample Order #1", "Try Sample Order #2" for quick 1-click live demoing.
 
-- [ ] **Step 1: Create sample Malaysian conversations** in `sample-chats.ts`.
-- [ ] **Step 2: Build WhatsApp sidebar and contact list**.
-- [ ] **Step 3: Build chat view with text selection event listener and hotkey `Alt + O`**.
-- [ ] **Step 4: Connect text selection to open FloatingHUD**.
+- [x] **Step 1: Create sample Malaysian conversations** in `sample-chats.ts`.
+- [x] **Step 2: Build WhatsApp sidebar and contact list**.
+- [x] **Step 3: Build chat view with text selection event listener and hotkey `Alt + O`**.
+- [x] **Step 4: Connect text selection to open FloatingHUD**.
 
 ---
 
@@ -174,10 +174,10 @@
   - **Customer Directory:** Business name, Phone, LHDN TIN status (Verified / Missing), Address.
 - Real-time updates: Refreshes whenever an order is approved from the simulator.
 
-- [ ] **Step 1: Implement Inventory & Catalog view**.
-- [ ] **Step 2: Implement Customer Directory view with LHDN TIN status badges**.
-- [ ] **Step 3: Implement real-time Audit Trail table**.
-- [ ] **Step 4: Integrate tabs inside HubDashboard container**.
+- [x] **Step 1: Implement Inventory & Catalog view**.
+- [x] **Step 2: Implement Customer Directory view with LHDN TIN status badges**.
+- [x] **Step 3: Implement real-time Audit Trail table**.
+- [x] **Step 4: Integrate tabs inside HubDashboard container**.
 
 ---
 
@@ -198,10 +198,10 @@
   - Provider indicator badge: `DeepSeek (Active)` or `Gemini` or `Offline Mock Mode`.
   - Copy notification toast when customer summary is generated.
 
-- [ ] **Step 1: Build TopNavbar with view mode toggle and AI provider status badge**.
-- [ ] **Step 2: Wire `src/app/page.tsx` with Split Screen & Tab views**.
-- [ ] **Step 3: Connect clipboard copy toast on order approval**.
-- [ ] **Step 4: Verify end-to-end user loop in the browser**.
+- [x] **Step 1: Build TopNavbar with view mode toggle and AI provider status badge**.
+- [x] **Step 2: Wire `src/app/page.tsx` with Split Screen & Tab views**.
+- [x] **Step 3: Connect clipboard copy toast on order approval**.
+- [x] **Step 4: Verify end-to-end user loop in the browser**.
 
 ---
 
@@ -221,10 +221,10 @@
   - Injects a floating iframe/modal connecting to `http://localhost:3000` (or the deployed Vercel URL).
   - Displays clear instructions in `extension/README.md` on how to load unpacked in Chrome.
 
-- [ ] **Step 1: Create `manifest.json` (V3, permissions: `activeTab`, `storage`, host: `web.whatsapp.com`)**.
-- [ ] **Step 2: Create `content.js` with selection capture and `Alt + O` shortcut**.
-- [ ] **Step 3: Create overlay CSS and HUD bridge**.
-- [ ] **Step 4: Write `extension/README.md` with step-by-step Chrome load instructions**.
+- [x] **Step 1: Create `manifest.json` (V3, permissions: `activeTab`, `storage`, host: `web.whatsapp.com`)**.
+- [x] **Step 2: Create `content.js` with selection capture and `Alt + O` shortcut**.
+- [x] **Step 3: Create overlay CSS and HUD bridge**.
+- [x] **Step 4: Write `extension/README.md` with step-by-step Chrome load instructions**.
 
 ---
 
@@ -234,6 +234,6 @@
 - Modify: `orbyte-flow/README.md`
 - Verify: `npm run build`
 
-- [ ] **Step 1: Run `npm run build` to verify zero TypeScript and ESLint errors**.
-- [ ] **Step 2: Test all Malaysian chat scenarios and verification cases**.
-- [ ] **Step 3: Update `README.md` with demo script, Vercel/Replit deployment steps, and hackathon rubric highlights**.
+- [x] **Step 1: Run `npm run build` to verify zero TypeScript and ESLint errors**.
+- [x] **Step 2: Test all Malaysian chat scenarios and verification cases**.
+- [x] **Step 3: Update `README.md` with demo script, Vercel/Replit deployment steps, and hackathon rubric highlights**.
