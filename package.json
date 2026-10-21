@@ -7,10 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "jiti src/lib/orbyte/db.test.ts && jiti src/lib/llm/client.test.ts && jiti src/lib/rules/validator.test.ts",
+    "test": "jiti src/lib/orbyte/db.test.ts && jiti src/lib/llm/client.test.ts && jiti src/lib/rules/validator.test.ts && jiti src/app/api/routes.test.ts",
     "test:db": "jiti src/lib/orbyte/db.test.ts",
     "test:llm": "jiti src/lib/llm/client.test.ts",
-    "test:rules": "jiti src/lib/rules/validator.test.ts"
+    "test:rules": "jiti src/lib/rules/validator.test.ts",
+    "test:api": "jiti src/app/api/routes.test.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

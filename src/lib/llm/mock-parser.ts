@@ -177,6 +177,9 @@ export function parseWithMockParser(rawText: string): ExtractionResult {
     // Split sentences if period is followed by a delivery phrase or capitalized sentence
     processLine = processLine.replace(/\.\s+(?=[A-Z]|deliver|hantar|send|urgent|tolong)/gi, ' , ');
 
+    // Conjunctions (and, dan, +, &) connecting line items (e.g. "10 ctn milo and 5 tin susu")
+    processLine = processLine.replace(/\s+(?:and|dan|\+)\s+(?=\d+)/gi, ' , ');
+
     // Split by commas, semicolons
     const subSegments = processLine.split(/[,;]/);
     for (const sub of subSegments) {

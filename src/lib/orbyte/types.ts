@@ -65,13 +65,16 @@ export type AuditAction =
   | 'ORDER_CREATED'
   | 'ORDER_APPROVED'
   | 'ORDER_REJECTED'
+  | 'PO_CREATED'
+  | 'QUOTATION_CREATED'
+  | 'INVOICE_CREATED'
   | 'STOCK_ADJUSTMENT'
   | 'STOCK_DEDUCTED'
   | 'CUSTOMER_UPDATED'
   | 'CATALOG_UPDATED'
   | 'EXTRACTION_COMPLETED';
 
-export type AuditStatus = 'success' | 'warning' | 'error' | 'info';
+export type AuditStatus = 'success' | 'warning' | 'error' | 'info' | 'VERIFIED' | 'REJECTED';
 
 export interface AuditLogEntry {
   id: string;
