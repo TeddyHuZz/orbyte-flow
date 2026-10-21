@@ -4,6 +4,7 @@
  */
 
 export * from '@/lib/orbyte/types';
+export * from '@/lib/rules/validator';
 
 // API Payloads
 export interface ExtractRequestBody {
