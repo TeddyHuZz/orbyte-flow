@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "test": "jiti src/lib/orbyte/db.test.ts && jiti src/lib/llm/client.test.ts && jiti src/lib/rules/validator.test.ts && jiti src/app/api/routes.test.ts",
