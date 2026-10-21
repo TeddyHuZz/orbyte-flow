@@ -25,7 +25,7 @@ function assert(condition: boolean, message: string) {
 }
 
 function makeRequest(url: string, method: string = 'GET', body?: unknown): NextRequest {
-  const init: RequestInit = {
+  const init: ConstructorParameters<typeof NextRequest>[1] = {
     method,
     headers: {
       'Content-Type': 'application/json',
@@ -140,6 +140,16 @@ export async function runApiRoutesTests() {
   // Test 3.1: Preflight
   const appOpt = await approveOPTIONS();
   assert(appOpt.status === 204, 'Test 3.1: Approve OPTIONS returns 204');
+
+  // Test 3.1b: Reject invalid action
+  const badActionReq = makeRequest('http://localhost:3000/api/approve', 'POST', {
+    draft: extractData.draft,
+    action: 'INVALID_ACTION',
+  });
+  const badActionRes = await approvePOST(badActionReq);
+  assert(badActionRes.status === 400, 'Test 3.1b: Invalid action returns 400');
+  const badActionJson = await badActionRes.json();
+  assert(badActionJson.success === false, 'Test 3.1b: Invalid action success is false');
 
   // Test 3.2: Rejection without stock mutation
   const initialMiloStock = orbyteDb.getProductBySku('MILO-1KG')?.stock ?? 0;

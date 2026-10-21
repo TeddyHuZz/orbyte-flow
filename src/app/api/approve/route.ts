@@ -36,8 +36,25 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const action: 'APPROVE' | 'REJECT' =
-      body.action === 'REJECT' || body.action === 'reject' ? 'REJECT' : 'APPROVE';
+    // Validate action if supplied
+    let action: 'APPROVE' | 'REJECT' = 'APPROVE';
+    if (body.action !== undefined && body.action !== null) {
+      const rawAction = String(body.action).trim().toUpperCase();
+      if (rawAction === 'APPROVE') {
+        action = 'APPROVE';
+      } else if (rawAction === 'REJECT') {
+        action = 'REJECT';
+      } else {
+        return jsonResponse(
+          {
+            success: false,
+            error: `Invalid action "${body.action}". Must be "APPROVE" or "REJECT".`,
+          },
+          { status: 400 }
+        );
+      }
+    }
+
     const user = body.user || 'operator';
     const rawDocType = body.docType || draft.docType || 'purchase_order';
 
@@ -118,7 +135,7 @@ export async function POST(req: NextRequest) {
 
     if (deductStock) {
       for (const item of draft.items) {
-        if (item.matchedSku) {
+        if (item.matchedSku && item.quantity > 0) {
           const updatedProduct = orbyteDb.updateStock(item.matchedSku, -item.quantity);
           if (updatedProduct) {
             stockDeductionSummary.push({
