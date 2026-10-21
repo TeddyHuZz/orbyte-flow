@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "jiti src/lib/orbyte/db.test.ts",
-    "test:db": "jiti src/lib/orbyte/db.test.ts"
+    "test": "jiti src/lib/orbyte/db.test.ts && jiti src/lib/llm/client.test.ts",
+    "test:db": "jiti src/lib/orbyte/db.test.ts",
+    "test:llm": "jiti src/lib/llm/client.test.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
